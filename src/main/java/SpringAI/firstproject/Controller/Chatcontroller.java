@@ -2,6 +2,7 @@ package SpringAI.firstproject.Controller;
 
 
 import SpringAI.firstproject.Services.ChatService;
+import SpringAI.firstproject.Services.GrockService;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.mistralai.MistralAiChatModel;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,7 +19,7 @@ public class Chatcontroller {
     private ChatService chatService;
     //private ChatClient mistralchat;
     //private ChatClient deepseekchat;
-    //private  GrockService grokService;
+    private  GrockService grokService;
 
 //    public Chatcontroller(ChatClient.Builder builder) {
 //        this.chat = builder.build();
@@ -38,16 +39,17 @@ public class Chatcontroller {
 //    }
 
 
-    public Chatcontroller(ChatService chatService) {
+    public Chatcontroller(ChatService chatService, GrockService grokService) {
         this.chatService = chatService;
+        this.grokService = grokService;
 
     }
 
 
-//    @GetMapping("/grok")
-//    public String ask(@RequestParam String q) {
-//        return grokService.ask(q);
-//    }
+    @GetMapping("/grok")
+    public String ask(@RequestParam String q) {
+        return grokService.ask(q);
+    }
 
 
 

@@ -1,7 +1,7 @@
 package SpringAI.firstproject.Services;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.context.annotation.Primary;
+import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.stereotype.Service;
 
 
@@ -19,14 +19,44 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public String chat(String pr) {
 
-        String prompt = "tell me about youself";
+        String prompt = "tell me about yourself";
 
-        String content = chat
-                .prompt()
-                .user(prompt)
-                .system("As Genius Boy")
-                .call().
-                content();
-        return content;
+//        String content = chat
+//                .prompt()
+//                .user(prompt)
+//                .system("As Genius Boy")
+//                .call().
+//                content();
+//        return content;
+
+
+
+        Prompt prompt1 = new Prompt(pr);
+//       return  chat.prompt(prompt1)
+//                .call()
+//                .content();
+
+
+
+        //metadata print
+//        var metadata = chat
+//                .prompt(prompt1)
+//                .call()
+//                .chatResponse()
+//                        .getMetadata();
+//
+//        System.out.println(metadata);
+//        return metadata.toString();
+
+
+        return chat
+                .prompt(prompt1)
+                .call()
+                .chatResponse()
+                .getResult()
+                .getOutput()
+                .getText();
+
+
     }
 }
