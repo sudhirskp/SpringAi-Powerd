@@ -59,15 +59,15 @@ public class Chatcontroller {
 
 
 
-//    @GetMapping("/chat")
-//    public ResponseEntity<String> callchat(@RequestParam(value = "q", required = true) String query) {
-//        var content = mistralchat.prompt(query).call().content();
-//        return ResponseEntity.ok(content);
-//    }
-
     @GetMapping("/chat")
-    public ResponseEntity<List<info>> callchat(@RequestParam(value = "q", required = true) String query) {
-        //var content = mistralchat.prompt(query).call().content();
+    public ResponseEntity<String> callchat(@RequestParam(value = "q", required = true) String query) {
+       // var content = mistralchat.prompt(query).call().content();
         return ResponseEntity.ok(chatService.chat(query));
     }
+
+//    @GetMapping("/chat")
+//    public ResponseEntity<List<info>> callchat(@RequestParam(value = "q", required = true) String query) {
+//        //var content = mistralchat.prompt(query).call().content();
+//        return ResponseEntity.ok(chatService.chat(query));
+//    }
 }
