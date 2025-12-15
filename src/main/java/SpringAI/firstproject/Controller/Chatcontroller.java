@@ -3,12 +3,15 @@ package SpringAI.firstproject.Controller;
 
 import SpringAI.firstproject.Services.ChatService;
 import SpringAI.firstproject.Services.GrockService;
+import SpringAI.firstproject.entity.info;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.mistralai.MistralAiChatModel;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 @RestController
 @RequestMapping
@@ -63,7 +66,7 @@ public class Chatcontroller {
 //    }
 
     @GetMapping("/chat")
-    public ResponseEntity<String> callchat(@RequestParam(value = "q", required = true) String query) {
+    public ResponseEntity<List<info>> callchat(@RequestParam(value = "q", required = true) String query) {
         //var content = mistralchat.prompt(query).call().content();
         return ResponseEntity.ok(chatService.chat(query));
     }

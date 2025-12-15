@@ -1,8 +1,12 @@
 package SpringAI.firstproject.Services;
 
+import SpringAI.firstproject.entity.info;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -17,7 +21,7 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    public String chat(String pr) {
+    public List<info> chat(String pr) {
 
         String prompt = "tell me about yourself";
 
@@ -49,14 +53,29 @@ public class ChatServiceImpl implements ChatService {
 //        return metadata.toString();
 
 
-        return chat
+//        return chat
+//                .prompt(prompt1)
+//                .call()
+//                .chatResponse()
+//                .getResult()
+//                .getOutput()
+//                .getText();
+
+//        return chat
+//                .prompt(prompt1)
+//                .call()
+//                .entity(info.class);
+
+
+        //if you want return list of info then
+        List<info> content =  chat
                 .prompt(prompt1)
                 .call()
-                .chatResponse()
-                .getResult()
-                .getOutput()
-                .getText();
+               // .entity(ParameterizedTypeReference.forType(List.class)); - it is show according to the query
+                .entity(new ParameterizedTypeReference<List<info>>() {
+                });
 
+        return content;
 
     }
 }
